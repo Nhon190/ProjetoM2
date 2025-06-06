@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+    CREATE TABLE alunos (
+        id_aluno INT PRIMARY KEY AUTO_INCREMENT,
+        nome VARCHAR(100) NOT NULL,
+        cpf VARCHAR(14) NOT NULL UNIQUE,
+        data_nascimento DATE NOT NULL,
+        email VARCHAR(100) NOT NULL
+    );
+    
+    CREATE TABLE materias (
+        id_materia INT PRIMARY KEY AUTO_INCREMENT,
+        nome VARCHAR(100) NOT NULL UNIQUE,
+        professor VARCHAR(100) NOT NULL
+    );
+
+    CREATE TABLE matriculas (
+        id_matricula INT PRIMARY KEY AUTO_INCREMENT,
+        cpf_aluno VARCHAR(14) NOT NULL,
+        nome_materia VARCHAR(100) NOT NULL,
+        data_matricula DATE NOT NULL,
+
+        FOREIGN KEY (cpf_aluno) REFERENCES alunos(cpf),
+        FOREIGN KEY (nome_materia) REFERENCES materias(nome),
+        CONSTRAINT unique_matricula UNIQUE (cpf_aluno, nome_materia)
+    );
+
+
+    </body>
+</html>
